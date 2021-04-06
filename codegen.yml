@@ -1,0 +1,12 @@
+schema: schema.json
+documents:
+  - ./src/**/*.{ts,tsx}
+  - ./node_modules/gatsby*/!(node_modules)/**/*.js
+config:
+  namingConvention:
+    enumValues: keep
+generates:
+  graphql-types.d.ts:
+    plugins:
+      - typescript
+      - typescript-operations
