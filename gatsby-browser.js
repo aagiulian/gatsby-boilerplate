@@ -5,7 +5,7 @@
  */
 
 // You can delete this file if you're not using it
-
+const React = require("react");
 const { PageContextProvider } = require("./src/components/Context/pageContext");
 
 exports.wrapPageElement = ({ element, props }) => {

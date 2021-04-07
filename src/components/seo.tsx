@@ -137,7 +137,6 @@
          title
          description
          author
-         siteUrl
          extraLanguages
          defaultLanguage
        }
