@@ -16,11 +16,13 @@
     "gatsby-plugin-sharp": "^3.11.0",
     "gatsby-source-filesystem": "^3.11.0",
     "gatsby-source-sanity": "^7.0.7",
+    "gatsby-source-shopify": "^5.2.1",
     "gatsby-transformer-sharp": "^3.11.0",
     "node-sass": "^6.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-helmet": "^6.1.0",
+    "shopify-buy": "^2.11.0",
     "universal-cookie": "^4.0.4"
   },
   "devDependencies": {

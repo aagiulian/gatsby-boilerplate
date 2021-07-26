@@ -22,6 +22,15 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+    {
+    resolve: `gatsby-source-shopify`,
+    options: {
+      // The domain name of your Shopify shop.
+      storeUrl: clientConfig.shopify.storeUrl,
+      // The storefront access token
+      password: clientConfig.shopify.password,
+    },
+  },
     // `gatsby-plugin-extract-schema`,
     // {
     //   resolve: "gatsby-source-sanity",
