@@ -3,11 +3,8 @@ const isProd = process.env.NODE_ENV === "production";
 
 module.exports = {
   siteMetadata: {
-    title: `Gatsby`,
-    description: `SanityBoilerplate`,
-    author: `@aagiulian`,
     defaultLanguage: "fr",
-    extraLanguages: ["en"]
+    extraLanguages: ["en"],
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -22,6 +19,19 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+    // {
+    //   resolve: `gatsby-plugin-google-fonts-v2`,
+    //   options: {
+    //     fonts: [
+    //       {
+    //            family: "Lato",
+    //            weights: ["300", "400", "700", "900", ["400"]],
+    //            variable: true,
+    //            display: "swap",
+    //       },
+    //     ],
+    //   },
+    // },
     // `gatsby-plugin-extract-schema`,
     // {
     //   resolve: "gatsby-source-sanity",
@@ -37,4 +47,4 @@ module.exports = {
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
   ],
-}
+};
