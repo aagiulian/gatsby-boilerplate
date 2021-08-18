@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-default-typescript",
+  "name": "gatsby-starter-soixanteseize",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
-  "version": "0.1.0",
-  "author": "Andy Kenward <hello@andykenward.com>",
+  "description": "Un starter Gatsby pour les gouverner tous",
+  "version": "0.2.0",
+  "author": "Arthur Giuliano <giuliano.arthur@gmail.com>",
   "dependencies": {
     "@sanity/block-content-to-react": "^3.0.0",
     "gatsby": "^3.11.0",
@@ -46,7 +46,7 @@
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\"",
     "type-check": "tsc --noEmit",
     "type-check:watch": "yarn run type-check -- --watch",
-    "codegen": "graphql-codegen",
+    "codegen": "graphql-codegen --config codegen.yml && prettier --write ./src/graphql-types.d.ts",
     "codegen:watch": "graphql-codegen --watch",
     "postinstall": "gatsby clean"
   },

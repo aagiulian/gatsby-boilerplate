@@ -1,10 +1,3 @@
-/**
- * SEO component that queries for data with
- *  Gatsby's useStaticQuery React hook
- *
- * See: https://www.gatsbyjs.org/docs/use-static-query/
- */
-
 import { graphql, useStaticQuery } from "gatsby";
 import React from "react";
 import { Helmet } from "react-helmet";
@@ -26,15 +19,15 @@ export const SEO: React.FC<Props> = ({
   title,
   image,
 }) => {
-  const { site, settings } = useStaticQuery(QUERY);
+  const { gatsby, settings } = useStaticQuery(QUERY);
   const { lang, originalPath } = usePageContext();
 
   /*
     Donnees qui proviennent du gatsby-config
    */
 
-  const defaultLanguage = site?.siteMetadata?.defaultLanguage;
-  const extraLanguages = site?.siteMetadata?.extraLanguages;
+  const defaultLanguage = gatsby?.siteMetadata?.defaultLanguage;
+  const extraLanguages = gatsby?.siteMetadata?.extraLanguages;
 
   /*
      Donnees qui proviennent des props (SEO specifique) ou Fallback (sanity query settings) 
@@ -133,8 +126,8 @@ export const SEO: React.FC<Props> = ({
 };
 
 const QUERY = graphql`
-  query SiteMetadata {
-    site {
+  query GatsbyMetaData {
+    gatsby: site {
       siteMetadata {
         extraLanguages
         defaultLanguage
