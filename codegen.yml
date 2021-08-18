@@ -11,7 +11,10 @@ config:
   namingConvention:
     enumValues: keep
 generates:
-  ./src/graphql-types.d.ts:
+  ./graphql-types.d.ts:
     plugins:
       - typescript
       - typescript-operations
+  ./schema.graphql:
+    plugins:
+      - schema-ast

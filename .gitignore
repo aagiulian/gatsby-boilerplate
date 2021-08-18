@@ -5,6 +5,9 @@ public
 .env
 .env*
 
+# Graphql Code Gen
+schema.graphql
+graphql-types.d.ts
 
 # Logs
 logs
