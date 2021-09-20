@@ -1,0 +1,112 @@
+const axios = require("axios");
+const preparePayload = (query, v) => {
+  return {
+    query,
+    variables: v,
+  };
+};
+
+const SHOPIFY_GRAPHQL_URL = `https://${process.env.GATSBY_SHOPNAME_SHOPIFY}/api/unstable/graphql.json`;
+
+const CREATE_CART = `mutation createCart($cartInput: CartInput) {
+  cartCreate(input: $cartInput) {
+    cart {
+      id
+      createdAt
+      updatedAt
+      lines(first:10) {
+        edges {
+          node {
+            id
+            quantity
+            merchandise {
+              ... on ProductVariant {
+                id
+            }
+            }
+          }
+        }
+
+      }
+      attributes {
+        key
+        value
+      }
+      estimatedCost {
+        totalAmount {
+          amount
+          currencyCode
+        }
+        subtotalAmount {
+          amount
+          currencyCode
+        }
+        totalTaxAmount {
+          amount
+          currencyCode
+        }
+        totalDutyAmount {
+          amount
+          currencyCode
+        }
+    }
+    }
+  }
+}
+  `;
+
+const shopifyConfig = {
+  Accept: "application/json",
+  "X-Shopify-Storefront-Access-Token": process.env.GATSBY_STOREFRONT_API,
+  // "X-Shopify-Access-Token": process.env.GATSBY_PASSWORD_SHOPIFY,
+};
+
+exports.handler = async (event, context) => {
+  //   if (event.httpMethod !== "POST")
+  //     return {
+  //       statusCode: 400,
+  //       body: JSON.stringify({ error: "Bad request" }),
+  //     };
+  try {
+    data = JSON.parse(event.body);
+  } catch (error) {
+    console.log("JSON parsing error:", error);
+    return {
+      statusCode: 400,
+      body: JSON.stringify({ error: "Bad request body" }),
+    };
+  }
+
+  console.log(`data`, data);
+  const payload = preparePayload(CREATE_CART, {
+    cartInput: data,
+  });
+  console.log(`payload`, payload);
+  try {
+    const cart = await axios({
+      url: SHOPIFY_GRAPHQL_URL,
+      method: "POST",
+      headers: shopifyConfig,
+      data: payload,
+    });
+    console.log(`cart: `, cart);
+    console.log(`cart.data`, cart.data.errors);
+    if (cart.data.errors) {
+      return {
+        statusCode: 200,
+        body: JSON.stringify({ error: carte.data.errors[0].message }),
+      };
+    } else {
+      return {
+        statusCode: 200,
+        body: JSON.stringify({ cart: cart.data.data.cartCreate.cart }),
+      };
+    }
+  } catch (err) {
+    console.log(`error : `, err);
+    return {
+      statusCode: 200,
+      body: JSON.stringify({ error: "Failed" }),
+    };
+  }
+};
