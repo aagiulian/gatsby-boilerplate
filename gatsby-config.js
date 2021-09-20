@@ -19,6 +19,17 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+    {
+      resolve: `gatsby-plugin-google-gtag`,
+      options: {
+        trackingIds: ["TRACKING-ID"],
+        pluginConfig: {
+          head: true,
+          respectDNT: true,
+          exclude: [],
+        },
+      },
+    },
     // {
     //   resolve: `gatsby-plugin-google-fonts-v2`,
     //   options: {
