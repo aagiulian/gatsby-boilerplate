@@ -13,13 +13,6 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sass`,
     {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `images`,
-        path: `${__dirname}/src/images`,
-      },
-    },
-    {
       resolve: `gatsby-plugin-google-gtag`,
       options: {
         trackingIds: ["TRACKING-ID"],
@@ -28,6 +21,15 @@ module.exports = {
           respectDNT: true,
           exclude: [],
         },
+      },
+    },
+    {
+      resolve: "gatsby-source-sanity",
+      options: {
+        projectId: `1ynryttm`,
+        dataset: `production`,
+        token: process.env.GATSBY_SANITY_READ_TOKEN,
+        graphqlTag: "default",
       },
     },
     // {
@@ -44,14 +46,6 @@ module.exports = {
     //   },
     // },
     // `gatsby-plugin-extract-schema`,
-    // {
-    //   resolve: "gatsby-source-sanity",
-    //   options: {
-    //     ...clientConfig.sanity,
-    //     // token: process.env.SANITY_READ_TOKEN,
-    //     watchMode: !isProd,
-    //     overlayDrafts: !isProd,
-    //   },
     // },
     // Peut etre delete gatsby plugin manifest a voir!
     // this (optional) plugin enables Progressive Web App + Offline functionality
