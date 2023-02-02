@@ -1,44 +1,38 @@
-import { graphql, useStaticQuery } from "gatsby";
-import React from "react";
-import { Helmet } from "react-helmet";
-import { usePageContext } from "./Context/pageContext";
+import { graphql, useStaticQuery } from 'gatsby'
+import React from 'react'
+import { Helmet } from 'react-helmet'
+import { usePageContext } from './Context/pageContext'
 
-type MetaProps = JSX.IntrinsicElements["meta"];
+type MetaProps = JSX.IntrinsicElements['meta']
 
 interface Props {
-  description?: string;
-  lang?: string;
-  meta?: MetaProps[];
-  title?: string;
-  image?: any;
+  description?: string
+  lang?: string
+  meta?: MetaProps[]
+  title?: string
+  image?: any
 }
 
-export const SEO: React.FC<Props> = ({
-  description = "",
-  meta = [],
-  title,
-  image,
-}) => {
-  const { gatsby, settings } = useStaticQuery(QUERY);
-  const { lang, originalPath } = usePageContext();
+export const SEO: React.FC<Props> = ({ description = '', meta = [], title, image }) => {
+  const { gatsby, settings } = useStaticQuery(QUERY)
+  const { lang, originalPath } = usePageContext()
 
   /*
     Donnees qui proviennent du gatsby-config
    */
 
-  const defaultLanguage = gatsby?.siteMetadata?.defaultLanguage;
-  const extraLanguages = gatsby?.siteMetadata?.extraLanguages;
+  const defaultLanguage = gatsby?.siteMetadata?.defaultLanguage
+  const extraLanguages = gatsby?.siteMetadata?.extraLanguages
 
   /*
      Donnees qui proviennent des props (SEO specifique) ou Fallback (sanity query settings) 
    */
 
-  const metaDescription =
-    description || settings?.siteMetadata?.description[lang] || "";
-  const host = settings?.siteMetadata?.url ?? "";
-  const websiteTitle = settings?.siteMetadata?.title[lang];
-  const metaImage = image || settings?.siteMetadata?.image?.asset?.url;
-  const metaTitle = title || websiteTitle;
+  const metaDescription = description || settings?.siteMetadata?.description[lang] || ''
+  const host = settings?.siteMetadata?.url ?? ''
+  const websiteTitle = settings?.siteMetadata?.title[lang]
+  const metaImage = image || settings?.siteMetadata?.image?.asset?.url
+  const metaTitle = title || websiteTitle
 
   return (
     <Helmet
@@ -46,9 +40,7 @@ export const SEO: React.FC<Props> = ({
         lang,
       }}
       title={metaTitle}
-      titleTemplate={
-        metaTitle === websiteTitle ? `%s` : `%s | ${websiteTitle || ""}`
-      }
+      titleTemplate={metaTitle === websiteTitle ? `%s` : `%s | ${websiteTitle || ''}`}
       meta={[
         {
           name: `description`,
@@ -99,31 +91,29 @@ export const SEO: React.FC<Props> = ({
           Le x-default est un fallback pour toutes les langues non gerees, la bonne pratique c'est de mettre un lien vers la page ou on peut choisir la langue du site.
           */
         {
-          rel: "canonical",
+          rel: 'canonical',
           href:
-            lang === defaultLanguage
-              ? `${host}${originalPath}`
-              : `${host}/${lang}${originalPath}`,
+            lang === defaultLanguage ? `${host}${originalPath}` : `${host}/${lang}${originalPath}`,
         },
         {
-          rel: "alternate",
-          hrefLang: "x-default",
+          rel: 'alternate',
+          hrefLang: 'x-default',
           href: `${host}${originalPath}`,
         },
         {
-          rel: "alternate",
+          rel: 'alternate',
           hrefLang: defaultLanguage,
           href: `${host}${originalPath}`,
         },
         ...extraLanguages.map((extraLang: string) => ({
-          rel: "alternate",
+          rel: 'alternate',
           hrefLang: extraLang,
           href: `${host}/${extraLang}${originalPath}`,
         })),
       ]}
     />
-  );
-};
+  )
+}
 
 const QUERY = graphql`
   query GatsbyMetaData {
@@ -134,4 +124,4 @@ const QUERY = graphql`
       }
     }
   }
-`;
+`

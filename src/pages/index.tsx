@@ -1,6 +1,6 @@
-import { Link } from "gatsby";
-import React from "react";
-import { SEO } from "../components/seo";
+import { Link } from 'gatsby'
+import React from 'react'
+import { SEO } from '../components/seo'
 
 const IndexPage: React.FC = () => (
   <>
@@ -11,6 +11,6 @@ const IndexPage: React.FC = () => (
     <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}></div>
     <Link to="/page-2/">Go to page 2</Link>
   </>
-);
+)
 
-export default IndexPage;
+export default IndexPage

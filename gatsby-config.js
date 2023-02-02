@@ -1,10 +1,10 @@
-const clientConfig = require("./client-config");
-const isProd = process.env.NODE_ENV === "production";
+const clientConfig = require('./client-config')
+const isProd = process.env.NODE_ENV === 'production'
 
 module.exports = {
   siteMetadata: {
-    defaultLanguage: "fr",
-    extraLanguages: ["en"],
+    defaultLanguage: 'fr',
+    extraLanguages: ['en'],
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -15,7 +15,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-gtag`,
       options: {
-        trackingIds: ["TRACKING-ID"],
+        trackingIds: ['TRACKING-ID'],
         pluginConfig: {
           head: true,
           respectDNT: true,
@@ -24,12 +24,12 @@ module.exports = {
       },
     },
     {
-      resolve: "gatsby-source-sanity",
+      resolve: 'gatsby-source-sanity',
       options: {
         projectId: `1ynryttm`,
         dataset: `production`,
         token: process.env.GATSBY_SANITY_READ_TOKEN,
-        graphqlTag: "default",
+        graphqlTag: 'default',
       },
     },
     // {
@@ -52,4 +52,4 @@ module.exports = {
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
   ],
-};
+}

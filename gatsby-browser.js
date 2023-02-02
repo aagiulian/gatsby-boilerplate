@@ -5,13 +5,9 @@
  */
 
 // You can delete this file if you're not using it
-const React = require("react");
-const { PageContextProvider } = require("./src/components/Context/pageContext");
+const React = require('react')
+const { PageContextProvider } = require('./src/components/Context/pageContext')
 
 exports.wrapPageElement = ({ element, props }) => {
-    return (
-      <PageContextProvider pageContext={props.pageContext}>
-        {element}
-      </PageContextProvider>
-    );
-  };
+  return <PageContextProvider pageContext={props.pageContext}>{element}</PageContextProvider>
+}
