@@ -60,7 +60,8 @@
     "type-check:watch": "yarn run type-check -- --watch",
     "codegen": "graphql-codegen --config codegen.yml && prettier --write ./graphql-types.d.ts",
     "codegen:watch": "graphql-codegen --watch 'src/**/*.{ts,tsx}'",
-    "postinstall": "gatsby clean"
+    "postinstall": "gatsby clean",
+    "prettier-format": "prettier --config .prettierrc '*/**/*.ts*' --write"
   },
   "repository": {
     "type": "git",

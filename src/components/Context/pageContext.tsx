@@ -1,24 +1,24 @@
-import React, { useState } from "react";
+import React, { useState } from 'react'
 // import { useCookie } from "../../hooks/useCookie";
 // import { useLocalStorage } from "../../hooks/useLocalStorage";
-import { useWindowSize } from "../../hooks/useWindowSize";
+import { useWindowSize } from '../../hooks/useWindowSize'
 
 const PageContext = React.createContext({
   // cookie: [],
-  lang: "",
+  lang: '',
   // lengthCookie: 0,
-  originalPath: "",
+  originalPath: '',
   // removeCookie: (key: string) => {},
   setLang: (lang: string) => {},
   size: { width: 0, height: 0 },
   // updateCookie: (value: any, options: any) => {},
-});
+})
 
 export const PageContextProvider: React.FC<{
-  pageContext: any;
-  children: any;
+  pageContext: any
+  children: any
 }> = ({ pageContext, children }) => {
-  const [lang, setLang] = useState<string>(pageContext.lang);
+  const [lang, setLang] = useState<string>(pageContext.lang)
   // const [cookie, updateCookie, removeCookie, lengthCookie] = useCookie(
   //   "default",
   //   [],
@@ -27,7 +27,7 @@ export const PageContextProvider: React.FC<{
   //     path: "/",
   //   }
   // );
-  const size = useWindowSize();
+  const size = useWindowSize()
   return (
     <PageContext.Provider
       value={{
@@ -43,7 +43,7 @@ export const PageContextProvider: React.FC<{
     >
       {children}
     </PageContext.Provider>
-  );
-};
+  )
+}
 
-export const usePageContext = () => React.useContext(PageContext);
+export const usePageContext = () => React.useContext(PageContext)
